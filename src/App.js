@@ -1,7 +1,14 @@
 import React from "react";
+import Sidebar from "./Sidebar";
 
 const App = () => {
-  return <h1>Hlw from akash HI motherFucker!! bokachoda</h1>;
+  return (
+    <div className="">
+      {/* sidebar */}
+      <Sidebar />
+      {/* chat Section */}
+    </div>
+  );
 };
 
 export default App;
