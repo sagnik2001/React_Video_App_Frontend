@@ -14,9 +14,9 @@ function Main() {
           marginTop: 50,
 
           boxShadow: "1px 2px 9px #0077b6",
-          borderRadius: "1%",
-          margin: "2em",
-          padding: "1em",
+
+          margin: "0.2rem",
+          padding: "1rem",
         }}
       >
         <div style={{ width: "50%", textAlign: "center" }}>
