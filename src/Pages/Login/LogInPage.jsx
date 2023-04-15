@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
 
+
+
 const LogInPage = () => {
   const [email, setEmail] = useState("");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,6 +13,7 @@ const LogInPage = () => {
   };
 
   return (
+
     <div className="App">
       <div className="auth-form-container">
         <h2>Login</h2>
@@ -29,6 +33,7 @@ const LogInPage = () => {
           Don&apos;t have an account? Register here.{" "}
         </button>
       </div>
+
     </div>
   );
 };

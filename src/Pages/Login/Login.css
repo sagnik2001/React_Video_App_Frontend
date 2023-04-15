@@ -1,8 +1,10 @@
+
 .auth-form-container,
 .login-form,
 .register-form {
   display: flex;
   flex-direction: column;
+
 }
 
 .App {
@@ -44,8 +46,11 @@ button {
   color: #7439db;
 }
 
+
+
 .link-btn {
   background: none;
   color: white;
   text-decoration: underline;
 }
+
