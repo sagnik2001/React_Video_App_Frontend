@@ -4,6 +4,8 @@ import "./App.css"
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Register from "./Pages/register/Register";
 import LogInPage from "./Pages/Login/LogInPage";
+import OtpPage from "./Pages/otpPage/OtpPage";
+
 
 const App = () => {
   const [currentForm, setCurrentForm] = useState('login');
@@ -30,7 +32,8 @@ const App = () => {
           </div>
         <Routes>
           <Route exact path="/login"  element={<LogInPage />}></Route>
-          <Route path="/Register"  element={<Register />}/>
+          <Route path="/register"  element={<Register />}/>
+          <Route path="/otppage"  element={<OtpPage />}/>
         </Routes>
     </BrowserRouter>
   );
