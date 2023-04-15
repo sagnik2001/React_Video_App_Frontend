@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Comfortaa", cursive;
+.text {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #c4c5c5;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.App {
+.cardWrapper {
   text-align: center;
   display: flex;
   min-height: 100vh;
@@ -14,4 +14,12 @@
   color: white;
   justify-content: center;
   background-image: linear-gradient(79deg, #14023e, #02030d 25%, #01104b);
+}
+
+.signinWrapper {
+  margin-top: 20px;
+}
+
+.hasInvite {
+  color: #0077ff;
 }
