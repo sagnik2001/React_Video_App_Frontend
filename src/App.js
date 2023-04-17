@@ -4,6 +4,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Pages/register/Register";
 import LogInPage from "./Pages/Login/LogInPage";
+
+import Rooms from "./Pages/rooms/Rooms";
+import contents from "./Pages/rooms/content";
+
+
 import OtpPage from "./Pages/otpPage/OtpPage";
 
 import Main from "./Pages/userProfile/Main.jsx";
@@ -12,12 +17,22 @@ import CreateProfile from "./Pages/CreateProfile/CreateProfile";
 import { ProtectedRoute, GuestRoute } from "./Components/ProtectedRoute";
 
 const App = () => {
+
   return (
-    // <div className="">
-    //   {/* sidebar */}
-    //   {/* <Sidebar /> */}
-    //   {/* chat Section */}
-    // </div>
+ 
+
+ {/*   <div>
+    {contents.map(contents => (
+        <Rooms 
+            key={contents.id}
+            name={contents.name}
+            participants={contents.participants}
+        />
+    ))}
+  </div> */}
+
+   
+
     <BrowserRouter>
       {/* 
         {currentForm === "login" ? (
@@ -71,6 +86,7 @@ const App = () => {
         />
       </Routes>
     </BrowserRouter>
+
   );
 };
 

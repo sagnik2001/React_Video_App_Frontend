@@ -1,0 +1,27 @@
+*{
+
+}
+.card-container {
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0 0 15px -5px;
+    padding: 10px 0;
+    margin: 20px 30px;
+    border-radius: 20px;
+}
+.card-container:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 15px 0;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+  }
+.grid-item {
+    color: #fff;
+    padding: 15px;
+    font-size: 10px;
+    text-align: left;
+    border: none;
+}
