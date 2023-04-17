@@ -3,16 +3,23 @@ import Image1 from "../../Components/Images/checkimage.jpeg";
 import styles from "./CreateProfile.module.css";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from "../../Database/Firebase";
 
 const CreateComponents = () => {
+  const location = useLocation();
+
   const [image, setimage] = useState({ preview: "" });
-  const [profilePicture, setprofilePicture] = useState([]);
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [email, setemail] = useState("");
+  const [name, setName] = useState(
+    location.state.name ? location.state.name : ""
+  );
+  const [desc, setDesc] = useState(
+    location.state.body ? location.state.body : ""
+  );
+  const [email, setemail] = useState(
+    location.state.email ? location.state.email : ""
+  );
 
   const navigate = useNavigate();
 
@@ -70,7 +77,7 @@ const CreateComponents = () => {
             />
           ) : (
             <img
-              src={Image1}
+              src={location.state.img ? location.state.img : Image1}
               alt="Upload"
               style={{ cursor: "pointer" }}
               width="129"

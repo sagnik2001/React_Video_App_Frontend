@@ -8,7 +8,6 @@ import LogInPage from "./Pages/Login/LogInPage";
 import Rooms from "./Pages/rooms/Rooms";
 import contents from "./Pages/rooms/content";
 
-
 import OtpPage from "./Pages/otpPage/OtpPage";
 
 import Main from "./Pages/userProfile/Main.jsx";
@@ -17,22 +16,7 @@ import CreateProfile from "./Pages/CreateProfile/CreateProfile";
 import { ProtectedRoute, GuestRoute } from "./Components/ProtectedRoute";
 
 const App = () => {
-
   return (
- 
-
- {/*   <div>
-    {contents.map(contents => (
-        <Rooms 
-            key={contents.id}
-            name={contents.name}
-            participants={contents.participants}
-        />
-    ))}
-  </div> */}
-
-   
-
     <BrowserRouter>
       {/* 
         {currentForm === "login" ? (
@@ -41,13 +25,20 @@ const App = () => {
           <Register onFormSwitch={toggleForm} />
         )}
       </div> */}
+      {/*   <div>
+    {contents.map(contents => (
+        <Rooms 
+            key={contents.id}
+            name={contents.name}
+            participants={contents.participants}
+        />
+    ))}
+  </div> */}
       <Routes>
         <Route
           path="/"
           element={
-            <GuestRoute>
               <Home />
-            </GuestRoute>
           }
         />
         <Route
@@ -86,7 +77,6 @@ const App = () => {
         />
       </Routes>
     </BrowserRouter>
-
   );
 };
 

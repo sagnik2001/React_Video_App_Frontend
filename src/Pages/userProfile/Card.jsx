@@ -1,8 +1,23 @@
 import { Avatar, Typography } from "@mui/material";
 import { FiEdit } from "react-icons/fi";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import "./Main.css";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ img, name, email, body }) => {
+  const navigate = useNavigate();
+
+  const handleEditNavigate = () => {
+    navigate("/create-profile", {
+      state: {
+        img: img,
+        name: name,
+        email: email,
+        body: body,
+      },
+    });
+  };
+
   return (
     <div
       style={{
@@ -32,9 +47,16 @@ const Card = ({ img, name, email, body }) => {
       <div className="profile_bio">
         <Typography className="profile_about">{body}</Typography>
       </div>
-      <div style={{ display: "flex", gap: "15px" ,padding:'10px'}}>
-        <button type="submit">Edit Profile</button>
-        <button type="submit">Go To Roooms </button>
+      <div style={{ display: "flex", gap: "15px", padding: "10px" }}>
+        <button
+          style={{ display: "flex", alignItems: "center", gap: "4px" }}
+          onClick={handleEditNavigate}
+        >
+          <FiEdit /> Edit Profile
+        </button>
+        <button style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          Go To Roooms <FaLongArrowAltRight />
+        </button>
       </div>
     </div>
   );
