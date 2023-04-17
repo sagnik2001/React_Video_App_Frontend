@@ -7,3 +7,7 @@
   justify-content: center;
   background-image: linear-gradient(79deg, #14023e, #02030d 25%, #01104b);
 }
+
+.txtarea {
+  padding: 10px;
+}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // import "../Login/Login.css"
 import "../register/Register.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { base_url } from "../../app/base_url";
 
 const Register = () => {
   const [phone, setphone] = useState("");
@@ -10,6 +12,22 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (phone.length < 10) return;
+    const appendPhone = "+91" + phone;
+    axios
+      .post(`${base_url}signUp/phone/`, {
+        phoneNumber: appendPhone,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/otppage", {
+          state: {
+            data: res.data,
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (

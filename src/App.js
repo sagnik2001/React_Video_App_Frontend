@@ -9,7 +9,7 @@ import OtpPage from "./Pages/otpPage/OtpPage";
 import Main from "./Pages/userProfile/Main.jsx";
 import Home from "./Pages/Home/Home";
 import CreateProfile from "./Pages/CreateProfile/CreateProfile";
-
+import { ProtectedRoute, GuestRoute } from "./Components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -19,18 +19,6 @@ const App = () => {
     //   {/* chat Section */}
     // </div>
     <BrowserRouter>
-
-    <div className="App">
-      {
-            currentForm === "login" ? <LogInPage onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-          </div>
-        <Routes>
-          <Route exact path="/login"  element={<LogInPage />}></Route>
-          <Route path="/register"  element={<Register />}/>
-          <Route path="/otppage"  element={<OtpPage />}/>
-        </Routes>
-
       {/* 
         {currentForm === "login" ? (
           <LogInPage onFormSwitch={toggleForm} />
@@ -39,13 +27,49 @@ const App = () => {
         )}
       </div> */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LogInPage />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/userProfile" element={<Main />}></Route>
-        <Route path="/create-profile" element={<CreateProfile />} />
-      </Routes>
+        <Route
+          path="/"
+          element={
+            <GuestRoute>
+              <Home />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <LogInPage />
+            </GuestRoute>
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={
+            <GuestRoute>
+              <Register />
+            </GuestRoute>
+          }
+        ></Route>
+        <Route
+          path="/userProfile"
+          element={
+            <ProtectedRoute>
+              <Main />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route path="/otppage" element={<OtpPage />} />
 
+        <Route
+          path="/create-profile"
+          element={
+            <ProtectedRoute>
+              <CreateProfile />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 };
