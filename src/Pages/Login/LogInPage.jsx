@@ -18,6 +18,7 @@ const LogInPage = () => {
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("userId",res.data.data.id);
         localStorage.setItem("token", res.data.token);
         navigate("/userProfile");
       })

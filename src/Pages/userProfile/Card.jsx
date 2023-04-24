@@ -54,7 +54,12 @@ const Card = ({ img, name, email, body }) => {
         >
           <FiEdit /> Edit Profile
         </button>
-        <button style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+        <button
+          style={{ display: "flex", alignItems: "center", gap: "4px" }}
+          onClick={() => {
+            navigate("/rooms");
+          }}
+        >
           Go To Roooms <FaLongArrowAltRight />
         </button>
       </div>

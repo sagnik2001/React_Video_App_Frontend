@@ -14,6 +14,7 @@ import Main from "./Pages/userProfile/Main.jsx";
 import Home from "./Pages/Home/Home";
 import CreateProfile from "./Pages/CreateProfile/CreateProfile";
 import { ProtectedRoute, GuestRoute } from "./Components/ProtectedRoute";
+import SingleRoom from "./Pages/rooms/SingleRoom";
 
 const App = () => {
   return (
@@ -35,12 +36,7 @@ const App = () => {
     ))}
   </div> */}
       <Routes>
-        <Route
-          path="/"
-          element={
-              <Home />
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route
           path="/login"
           element={
@@ -72,6 +68,22 @@ const App = () => {
           element={
             <ProtectedRoute>
               <CreateProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/rooms"
+          element={
+            <ProtectedRoute>
+              <Rooms />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/room/:id"
+          element={
+            <ProtectedRoute>
+              <SingleRoom />
             </ProtectedRoute>
           }
         />
