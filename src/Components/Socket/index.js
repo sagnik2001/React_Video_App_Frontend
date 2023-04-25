@@ -8,5 +8,5 @@ export const socketInit = () => {
         timeout : 10000,
         transports : ['websocket']
     }
-    return io('http://localhost:5000',options)
+    return io('https://videoappbackend.onrender.com',options)
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  } from "react";
 import "./App.css";
 // import Sidebar from "./Sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -6,7 +6,6 @@ import Register from "./Pages/register/Register";
 import LogInPage from "./Pages/Login/LogInPage";
 
 import Rooms from "./Pages/rooms/Rooms";
-import contents from "./Pages/rooms/content";
 
 import OtpPage from "./Pages/otpPage/OtpPage";
 
