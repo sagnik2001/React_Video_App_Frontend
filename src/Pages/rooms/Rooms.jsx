@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Rooms = () => {
   const [open, setOpen] = useState(false);
   const [rooms, setRooms] = useState([]);
+  
   const [createrName, setcreaterName] = useState([]);
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
 
@@ -60,7 +61,7 @@ const Rooms = () => {
         {rooms?.map((res, keys) => (
           <div className="card-container" onClick={(e)=>{
             e.preventDefault()
-            navigate(`/room/${res._id}`)
+            navigate(`/room/${res._id}`,{state : {roomDetails : res}})
           }}>
             <div class="grid-container">
               <div class="grid-item">
