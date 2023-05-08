@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { base_url } from "../../app/base_url";
+import axios from "axios";
 
 const CreateRoom = ({ open, handleClose }) => {
+  const [room, setroom] = useState("");
+
+  const handleClick = () => {
+    const userId = JSON.parse(localStorage.getItem("userId"));
+
+    axios
+      .post(`${base_url}rooms/createroom`, {
+        createdBy: userId,
+        room: room,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Dialog
       open={open}
@@ -14,16 +34,28 @@ const CreateRoom = ({ open, handleClose }) => {
       }}
     >
       <DialogContent>
-        <div style={{marginBottom:'15px'}}>
+        <div style={{ marginBottom: "15px" }}>
           <input
             type="name"
             placeholder="Enter Room Name"
             name="email"
             style={{ border: "1px solid black" }}
+            value={room}
+            onChange={(e) => {
+              setroom(e.target.value);
+            }}
           />
         </div>
-        <div style={{display:'flex',justifyContent:'center'}}>
-          <button style={{border:'1px solid purple'}}>Create</button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <button
+            style={{ border: "1px solid purple" }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick();
+            }}
+          >
+            Create
+          </button>
         </div>
       </DialogContent>
     </Dialog>

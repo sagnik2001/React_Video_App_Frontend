@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div className={styles.cardWrapper}>
-      <Card title="Welcome to WeChat">
+      <Card title="Welcome to Chit-Chat">
         <p className={styles.text}>
           This is a video and audio calling react app made by our team
         </p>
