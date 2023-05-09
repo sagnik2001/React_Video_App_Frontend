@@ -6,7 +6,6 @@ import CreateRoom from "./CreateRoom";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
 import { useNavigate } from "react-router-dom";
-import {TfiViewListAlt} from "react-icons/tfi"
 
 const Rooms = () => {
   const [open, setOpen] = useState(false);
@@ -16,12 +15,8 @@ const Rooms = () => {
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
 
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem("userId"));
-
     axios
-      .post(`${base_url}rooms/getrooms`, {
-        userId: userId,
-      })
+      .get(`${base_url}rooms/getAllRooms/`)
       .then((res) => {
         setRooms(res.data);
         for (var i = 0; i < res.data.length; i++) {
@@ -41,6 +36,42 @@ const Rooms = () => {
         console.log(err);
       });
   }, []);
+
+  const handleClickToJoin = (roomId) => {
+    const userId = JSON.parse(localStorage.getItem("userId"));
+    axios
+      .post(`${base_url}rooms/joinroom/`, {
+        roomId: roomId,
+        userId: userId,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          axios
+            .get(`${base_url}rooms/getAllRooms/`)
+            .then((res) => {
+              setRooms(res.data);
+              for (var i = 0; i < res.data.length; i++) {
+                axios
+                  .post(`${base_url}user/getdetails`, {
+                    id: res.data[i].created_By,
+                  })
+                  .then((res) => {
+                    setcreaterName((old) => [...old, res.data.name]);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -63,6 +94,7 @@ const Rooms = () => {
             className="card-container"
             onClick={(e) => {
               e.preventDefault();
+              if(!res?.participants.includes(userId)) return;
               navigate(`/room/${res._id}`, { state: { roomDetails: res } });
             }}
           >
@@ -101,7 +133,18 @@ const Rooms = () => {
                   gap: "10px",
                 }}
               >
-                <button>Joined</button>
+                {res?.participants.includes(userId) ? (
+                  <button>Joined</button>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleClickToJoin(res?._id);
+                    }}
+                  >
+                    Join
+                  </button>
+                )}
                 <button>Leave</button>
               </div>
             )}
@@ -120,19 +163,6 @@ const Rooms = () => {
           </div>
         ))}
       </div>
-      <Fab
-        variant="add"
-        style={{
-          position: "absolute",
-          left: "90%",
-          top: "80%",
-          textTransform: "capitalize",
-          display:'flex',
-          gap:'10px'
-        }}
-      >
-        <TfiViewListAlt size={25} />
-      </Fab>
 
       <Fab
         aria-label="add"
