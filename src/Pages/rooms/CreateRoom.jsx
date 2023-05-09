@@ -8,11 +8,10 @@ const CreateRoom = ({ open, handleClose }) => {
 
   const handleClick = () => {
     const userId = JSON.parse(localStorage.getItem("userId"));
-
     axios
       .post(`${base_url}rooms/createroom`, {
         createdBy: userId,
-        room: room,
+        name: room,
       })
       .then((res) => {
         console.log(res);
@@ -38,7 +37,6 @@ const CreateRoom = ({ open, handleClose }) => {
           <input
             type="name"
             placeholder="Enter Room Name"
-            name="email"
             style={{ border: "1px solid black" }}
             value={room}
             onChange={(e) => {

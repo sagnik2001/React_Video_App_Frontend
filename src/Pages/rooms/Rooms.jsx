@@ -6,14 +6,14 @@ import CreateRoom from "./CreateRoom";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
 import { useNavigate } from "react-router-dom";
+import {TfiViewListAlt} from "react-icons/tfi"
 
 const Rooms = () => {
   const [open, setOpen] = useState(false);
   const [rooms, setRooms] = useState([]);
-  
+
   const [createrName, setcreaterName] = useState([]);
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
-
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("userId"));
@@ -49,7 +49,7 @@ const Rooms = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="Room_Container">
@@ -59,10 +59,13 @@ const Rooms = () => {
 
       <div className="container">
         {rooms?.map((res, keys) => (
-          <div className="card-container" onClick={(e)=>{
-            e.preventDefault()
-            navigate(`/room/${res._id}`,{state : {roomDetails : res}})
-          }}>
+          <div
+            className="card-container"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/room/${res._id}`, { state: { roomDetails: res } });
+            }}
+          >
             <div class="grid-container">
               <div class="grid-item">
                 <h2>Room Name : </h2>
@@ -89,7 +92,7 @@ const Rooms = () => {
                 </div>
               </div>
             </div>
-            {res.created_By !== userId &&
+            {res.created_By !== userId && (
               <div
                 style={{
                   display: "flex",
@@ -101,8 +104,8 @@ const Rooms = () => {
                 <button>Joined</button>
                 <button>Leave</button>
               </div>
-            }
-             {res.created_By === userId &&
+            )}
+            {res.created_By === userId && (
               <div
                 style={{
                   display: "flex",
@@ -113,10 +116,23 @@ const Rooms = () => {
               >
                 <button>Delete</button>
               </div>
-            }
+            )}
           </div>
         ))}
       </div>
+      <Fab
+        variant="add"
+        style={{
+          position: "absolute",
+          left: "90%",
+          top: "80%",
+          textTransform: "capitalize",
+          display:'flex',
+          gap:'10px'
+        }}
+      >
+        <TfiViewListAlt size={25} />
+      </Fab>
 
       <Fab
         aria-label="add"
