@@ -14,7 +14,7 @@ const Rooms = () => {
   const [createrName, setcreaterName] = useState([]);
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
 
-  useEffect(() => {
+  const getRooms = () => {
     axios
       .get(`${base_url}rooms/getAllRooms/`)
       .then((res) => {
@@ -35,6 +35,10 @@ const Rooms = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+    getRooms();
   }, []);
 
   const handleClickToJoin = (roomId) => {
@@ -94,7 +98,7 @@ const Rooms = () => {
             className="card-container"
             onClick={(e) => {
               e.preventDefault();
-              if(!res?.participants.includes(userId)) return;
+              if (!res?.participants.includes(userId)) return;
               navigate(`/room/${res._id}`, { state: { roomDetails: res } });
             }}
           >
@@ -175,7 +179,7 @@ const Rooms = () => {
       >
         <GrAdd size={25} onClick={handleClickOpen} />
       </Fab>
-      <CreateRoom open={open} handleClose={handleClose} />
+      <CreateRoom open={open} handleClose={handleClose} getRooms={getRooms} />
     </div>
   );
 };

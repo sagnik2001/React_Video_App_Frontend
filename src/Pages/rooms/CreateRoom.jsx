@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { base_url } from "../../app/base_url";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const CreateRoom = ({ open, handleClose }) => {
+const CreateRoom = ({ open, handleClose, getRooms }) => {
   const [room, setroom] = useState("");
 
   const handleClick = () => {
@@ -15,6 +16,16 @@ const CreateRoom = ({ open, handleClose }) => {
       })
       .then((res) => {
         console.log(res);
+        toast.success('Room successfully created', {
+          position: "top-right",
+          autoClose: 3000, // Close the popup after 3000 milliseconds (adjust as needed)
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        })
+        handleClose()
+        getRooms();
       })
       .catch((err) => {
         console.log(err);

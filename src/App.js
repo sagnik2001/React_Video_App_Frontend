@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { } from "react";
 import "./App.css";
 // import Sidebar from "./Sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,6 +14,8 @@ import Home from "./Pages/Home/Home";
 import CreateProfile from "./Pages/CreateProfile/CreateProfile";
 import { ProtectedRoute, GuestRoute } from "./Components/ProtectedRoute";
 import SingleRoom from "./Pages/rooms/SingleRoom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -34,6 +36,7 @@ const App = () => {
         />
     ))}
   </div> */}
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

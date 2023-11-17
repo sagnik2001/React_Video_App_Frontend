@@ -1,28 +1,70 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
+import { toast } from "react-toastify"
 
 const LogInPage = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const toastId = useRef()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email.length < 10) return;
+    if (email.length < 10) {
+      toast.error('Phone number must be atleast 10 digits', {
+        position: "top-right",
+        autoClose: 3000, // Close the popup after 3000 milliseconds (adjust as needed)
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
     const appendPhone = "+91" + email;
+    // toast.loading('Please wait till your request is being processed', {
+    //   position: "top-right",
+    //   autoClose: 3000, // Close the popup after 3000 milliseconds (adjust as needed)
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    // });
+    toastId.current = toast.loading('Please wait till your request is being processed', {
+      position: "top-right",
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    })
     axios
       .post(`${base_url}signUp/login/`, {
         phoneNumber: appendPhone,
       })
       .then((res) => {
         console.log(res);
-        localStorage.setItem("userId",res.data.data.id);
+        toast.update(toastId.current, {
+          render: "Successfully Logged In",
+          type: "success",
+          isLoading: "false"
+        })
+        localStorage.setItem("userId", res.data.data.id);
         localStorage.setItem("token", res.data.token);
         navigate("/userProfile");
       })
       .catch((err) => {
+        toast.update(toastId.current, {
+          render: "Error occured. Please try again",
+          type: "error",
+          isLoading: "false",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        })
         console.error(err);
       });
   };
