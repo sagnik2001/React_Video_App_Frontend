@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 const Rooms = () => {
   const [open, setOpen] = useState(false);
   const [rooms, setRooms] = useState([]);
-
   const [createrName, setcreaterName] = useState([]);
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
+  const navigate = useNavigate();
 
   const getRooms = () => {
     axios
@@ -35,7 +35,7 @@ const Rooms = () => {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   useEffect(() => {
     getRooms();
@@ -50,26 +50,7 @@ const Rooms = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          axios
-            .get(`${base_url}rooms/getAllRooms/`)
-            .then((res) => {
-              setRooms(res.data);
-              for (var i = 0; i < res.data.length; i++) {
-                axios
-                  .post(`${base_url}user/getdetails`, {
-                    id: res.data[i].created_By,
-                  })
-                  .then((res) => {
-                    setcreaterName((old) => [...old, res.data.name]);
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          getRooms();
         }
       })
       .catch((err) => {
@@ -84,7 +65,6 @@ const Rooms = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const navigate = useNavigate();
 
   return (
     <div className="Room_Container">
@@ -168,17 +148,16 @@ const Rooms = () => {
         ))}
       </div>
 
-      <Fab
-        aria-label="add"
-        style={{
-          position: "absolute",
-          left: "90%",
-          top: "90%",
-          textTransform: "capitalize",
-        }}
-      >
-        <GrAdd size={25} onClick={handleClickOpen} />
-      </Fab>
+      <div className="fab-container">
+        <Fab
+          aria-label="add"
+          style={{
+            textTransform: "capitalize",
+          }}
+        >
+          <GrAdd size={25} onClick={handleClickOpen} />
+        </Fab>
+      </div>
       <CreateRoom open={open} handleClose={handleClose} getRooms={getRooms} />
     </div>
   );
