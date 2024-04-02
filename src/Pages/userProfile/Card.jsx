@@ -19,38 +19,36 @@ const Card = ({ img, name, email, body }) => {
   };
 
   return (
-    <>
-    <div className="main_div"
+    <div id="main1"
       style={{
         display: "flex",
         alignItems: "center",
-        flexDirection: "row", //modi
+        flexDirection: "column",
         textAlign: "center",
         color: "gray",
         maxWidth: "720px",
       }}
     >
-      <div className="one">
       <div className="profile_img">
         <Avatar
           src={img}
           style={{
-            width: 220,
-            height: 220,
-          }} />
+            width: 300,
+            height: 300,
+          }}
+        />
       </div>
-      <div className="profile_bio">
-        <Typography className="profile_titles">{name}</Typography>
-      </div>
-    </div>
-    <div className="two">
+      <div className="info_div">
+        <div className="profile_bio">
+          <Typography className="profile_titles">{name}</Typography>
+        </div>
         <div className="profile_bio">
           <Typography className="profile_about">{body}</Typography>
         </div>
         <div className="profile_bio">
           <Typography className="profile_emails">{email}</Typography>
         </div>
-        
+      </div>
         <div style={{ display: "flex", gap: "15px", padding: "10px" }}>
           <button
             style={{ display: "flex", alignItems: "center", gap: "4px" }}
@@ -62,52 +60,14 @@ const Card = ({ img, name, email, body }) => {
             style={{ display: "flex", alignItems: "center", gap: "4px" }}
             onClick={() => {
               navigate("/rooms");
-            } }
+            }}
           >
             Go To Roooms <FaLongArrowAltRight />
           </button>
         </div>
-      </div>
-      </div>
-      </>
+      
+    </div>
   );
 };
 
 export default Card;
-
-
-// import React, { useState } from 'react';
-// // import './UserProfile.css'; // Import CSS file
-
-// const Card = () => {
-//   const [user, setUser] = useState({
-//     name: 'John Doe',
-//     email: 'john.doe@example.com',
-//     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//     profilePicture: 'https://via.placeholder.com/150',
-//   });
-
-//   const handleEditProfile = () => {
-//     console.log('Edit profile clicked');
-//   };
-
-//   const handleGoToRooms = () => {
-//     console.log('Go to rooms clicked');
-//   };
-
-//   return (
-//     <div className="user-profile">
-//       <img src={user.profilePicture} alt="Profile" className="profile-picture" />
-//       <div className="user-details">
-//         <h2>{user.name}</h2>
-//         <p>{user.email}</p>
-//         <p>{user.bio}</p>
-//         <button onClick={handleEditProfile}>Edit Profile</button>
-//         <button onClick={handleGoToRooms}>Go to Rooms</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Card;
-
