@@ -11,11 +11,11 @@ const Home = () => {
     textDecoration: "none",
     marginLeft: "10px",
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/register")
-  }
+    navigate("/register");
+  };
 
   return (
     <div className={styles.cardWrapper}>
