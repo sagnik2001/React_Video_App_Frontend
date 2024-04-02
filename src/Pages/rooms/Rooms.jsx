@@ -69,7 +69,7 @@ const Rooms = () => {
   return (
     <div className="Room_Container">
       <div style={{ padding: "25px" }}>
-        <h1>ROOMS</h1>
+        <h1>CHAT ROOMS</h1>
       </div>
 
       <div className="container">
