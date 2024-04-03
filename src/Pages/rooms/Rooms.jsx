@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import "./Rooms.css";
 import { Fab } from "@mui/material";
 import { GrAdd } from "react-icons/gr";
@@ -14,6 +22,87 @@ const Rooms = () => {
   const [createrName, setcreaterName] = useState([]);
   const userId = JSON.parse(localStorage.getItem("userId")).toString();
   const navigate = useNavigate();
+
+  function handleDelete() {
+    // Show confirmation popup
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete the room?"
+    );
+    if (confirmDelete) {
+      // If user confirms, perform deletion logic
+      // Here you can call your API to delete the room
+      // Example:
+      // fetch('your_delete_api_url', {
+      //   method: 'DELETE',
+      //   headers: {
+      //     'Authorization': 'Bearer your_token',
+      //   },
+      // })
+      // .then(response => {
+      //   if (!response.ok) {
+      //     throw new Error('Failed to delete room');
+      //   }
+      //   // Handle successful deletion
+      // })
+      // .catch(error => {
+      //   console.error('Error deleting room:', error);
+      //   // Handle error
+      // });
+    }
+  }
+
+  function handleLeaveRoom(roomId) {
+    // Show confirmation popup
+    const confirmLeave = window.confirm(
+      "Are you sure you want to leave this room?"
+    );
+    if (confirmLeave) {
+      // If user confirms, perform leave room logic
+      // Here you can call your API to leave the room
+      // Example:
+      // fetch('your_leave_room_api_url', {
+      //   method: 'POST', // Or 'DELETE' depending on your API implementation
+      //   headers: {
+      //     'Authorization': 'Bearer your_token',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     roomId: roomId
+      //   })
+      // })
+      // .then(response => {
+      //   if (!response.ok) {
+      //     throw new Error('Failed to leave room');
+      //   }
+      //   // Handle successful leave
+      // })
+      // .catch(error => {
+      //   console.error('Error leaving room:', error);
+      //   // Handle error
+      // });
+    }
+  }
+
+  function LeaveConfirmationDialog({ open, handleClose, handleConfirm }) {
+    return (
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Confirm Leave Room</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to leave this room?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirm} color="primary" autoFocus>
+            Leave
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
 
   const getRooms = () => {
     setLoading(true);
@@ -135,7 +224,9 @@ const Rooms = () => {
                       Join
                     </button>
                   )}
-                  <button>Leave</button>
+                  <button onClick={() => handleLeaveRoom(res?._id)}>
+                    Leave
+                  </button>
                 </div>
               )}
               {res.created_By === userId && (
@@ -147,7 +238,7 @@ const Rooms = () => {
                     gap: "10px",
                   }}
                 >
-                  <button>Delete</button>
+                  <button onClick={handleDelete}>Delete</button>
                 </div>
               )}
             </div>
