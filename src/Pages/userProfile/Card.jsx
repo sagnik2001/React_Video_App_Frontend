@@ -19,7 +19,7 @@ const Card = ({ img, name, email, body }) => {
   };
 
   return (
-    <div
+    <div id="main1"
       style={{
         display: "flex",
         alignItems: "center",
@@ -33,36 +33,39 @@ const Card = ({ img, name, email, body }) => {
         <Avatar
           src={img}
           style={{
-            width: 320,
-            height: 320,
+            width: 300,
+            height: 300,
           }}
         />
       </div>
-      <div className="profile_bio">
-        <Typography className="profile_titles">{name}</Typography>
+      <div className="info_div">
+        <div className="profile_bio">
+          <Typography className="profile_titles">{name}</Typography>
+        </div>
+        <div className="profile_bio">
+          <Typography className="profile_about">{body}</Typography>
+        </div>
+        <div className="profile_bio">
+          <Typography className="profile_emails">{email}</Typography>
+        </div>
       </div>
-      <div className="profile_bio">
-        <Typography className="profile_emails">{email}</Typography>
-      </div>
-      <div className="profile_bio">
-        <Typography className="profile_about">{body}</Typography>
-      </div>
-      <div style={{ display: "flex", gap: "15px", padding: "10px" }}>
-        <button
-          style={{ display: "flex", alignItems: "center", gap: "4px" }}
-          onClick={handleEditNavigate}
-        >
-          <FiEdit /> Edit Profile
-        </button>
-        <button
-          style={{ display: "flex", alignItems: "center", gap: "4px" }}
-          onClick={() => {
-            navigate("/rooms");
-          }}
-        >
-          Go To Roooms <FaLongArrowAltRight />
-        </button>
-      </div>
+        <div style={{ display: "flex", gap: "15px", padding: "10px" }}>
+          <button
+            style={{ display: "flex", alignItems: "center", gap: "4px" }}
+            onClick={handleEditNavigate}
+          >
+            <FiEdit /> Edit Profile
+          </button>
+          <button
+            style={{ display: "flex", alignItems: "center", gap: "4px" }}
+            onClick={() => {
+              navigate("/rooms");
+            }}
+          >
+            Go To Roooms <FaLongArrowAltRight />
+          </button>
+        </div>
+      
     </div>
   );
 };
