@@ -1,8 +1,9 @@
 #main1 {
   /* background-color: #F3EEEA ; */
   /* background-color: #242424; */
-  background-image: linear-gradient(0deg, #242424 0%, #deaa3e 50%, #bd9052 100%);
-
+  /* background-image: linear-gradient(0deg, #242424 0%, #deaa3e 50%, #bd9052 100%); */
+  background-image: linear-gradient(90deg, rgba(119,107,93,1) 0%, rgba(176,166,149,1) 35%, rgba(243,238,234,1) 100%);
+  /* background-color: #B0A695; */
   border-radius: 50px;
   padding: 40px;
   color: black !important;
