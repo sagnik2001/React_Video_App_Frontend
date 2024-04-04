@@ -6,6 +6,7 @@ import { base_url } from "../../app/base_url";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from "../../Database/Firebase";
+import "./CreateComponents.css"
 
 const CreateComponents = () => {
   const location = useLocation();
@@ -64,7 +65,7 @@ const CreateComponents = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div>
         <label htmlFor="upload-btn">
           {image?.preview ? (
@@ -146,7 +147,19 @@ const CreateComponents = () => {
         />
       </div>
       <div style={{ padding: "10px" }}>
-        <button className="btn btn-primary" onClick={HandleCreateProfile}>
+        <button className="btn btn-primary"  style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            fontWeight: "bold",
+            transition: "all 0.3s ease",
+            padding: "8px",
+            cursor: "pointer",
+            border: "none",
+            background: "transparent",
+            color: "inherit",
+            color: "#0077b6",
+          }} onClick={HandleCreateProfile}>
           Save
         </button>
       </div>
