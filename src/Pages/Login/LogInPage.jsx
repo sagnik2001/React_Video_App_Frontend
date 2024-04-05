@@ -69,32 +69,72 @@ const LogInPage = () => {
       });
   };
 
+//   return (
+//     <div className="App">
+//       <div className="auth-form-container">
+//         <h2>Login</h2>
+//         <form className="login-form" onSubmit={handleSubmit}>
+//           <label htmlFor="phoneNumber">Phone Number</label>
+//           <input
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             type="name"
+//             placeholder="Enter Your Phone Number"
+//             id="email"
+//             name="email"
+//           />
+//           <button type="submit">Log in</button>
+//         </form>
+//         <button
+//           className="link-btn"
+//           onClick={() => {
+//             navigate("/register");
+//           }}
+//         >
+//           Don&apos;t have an account? Register here.{" "}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+// export default LogInPage;
+
   return (
-    <div className="App">
-      <div className="auth-form-container">
-        <h2>Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="phoneNumber">Phone Number</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="name"
-            placeholder="Enter Your Phone Number"
-            id="email"
-            name="email"
-          />
-          <button type="submit">Log in</button>
+    <div className="login_container">
+      <div className="container_wrapper_login">
+        <h3 className="login_text">
+          <i className="bi bi-person-circle ac-logo" />
+          Log In
+        </h3>
+
+        <form method="post" className="login_form" onSubmit={handleSubmit}>
+          <div className="item">
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input"
+              type="number"
+              inputMode="numeric"
+              placeholder="Phone Number"
+            />
+          </div>
+
+          <div className="item submit">
+            <button type="submit">Log In</button>
+          </div>
         </form>
-        <button
-          className="link-btn"
-          onClick={() => {
-            navigate("/register");
-          }}
-        >
-          Don&apos;t have an account? Register here.{" "}
-        </button>
+
+        <h2 className="span_class">
+          <span></span>
+        </h2>
+
+        <span className="ac">
+          Don't have an Account? <a href="/register">Register</a>
+        </span>
       </div>
     </div>
   );
-};
+}
+
 export default LogInPage;
+
