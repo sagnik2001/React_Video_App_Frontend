@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Image1 from "../../Components/Images/checkimage.jpeg";
-import styles from "./CreateProfile.module.css";
+import "./CreateProfile.css";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from "../../Database/Firebase";
+import { Avatar } from "@mui/material";
 
 const CreateComponents = () => {
   const location = useLocation();
@@ -64,24 +65,38 @@ const CreateComponents = () => {
   };
 
   return (
-    <div>
+    <div id="main1"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        textAlign: "center",
+        color: "gray",
+        maxWidth: '720px',
+        width: '100%',
+        padding: '10px'
+      }}>
       <div>
         <label htmlFor="upload-btn">
           {image?.preview ? (
-            <img
+            <Avatar
               src={image.preview}
               alt="Upload"
-              style={{ cursor: "pointer" }}
-              width="129"
-              height="131"
+              style={{
+                width: 300,
+                height: 300,
+                cursor: "pointer"
+              }}
             />
           ) : (
-            <img
+            <Avatar
               src={location.state.img ? location.state.img : Image1}
               alt="Upload"
-              style={{ cursor: "pointer" }}
-              width="129"
-              height="131"
+              style={{
+                width: 300,
+                height: 300,
+                cursor: "pointer"
+              }}
             />
           )}
           <input
@@ -94,10 +109,11 @@ const CreateComponents = () => {
       </div>
       <div
         style={{
-          gap: "10px",
+          gap: "6px",
           display: "flex",
-          alignItems: "center",
           padding: "10px",
+          flexDirection: 'column',
+          width: '100%'
         }}
       >
         <label>Enter Name</label>
@@ -113,10 +129,11 @@ const CreateComponents = () => {
       </div>
       <div
         style={{
-          gap: "10px",
+          gap: "6px",
           display: "flex",
-          alignItems: "center",
           padding: "10px",
+          flexDirection: 'column',
+          width: '100%'
         }}
       >
         <label>Enter Email</label>
@@ -131,22 +148,34 @@ const CreateComponents = () => {
           }}
         />
       </div>
-      <div>
+      <div style={{
+        gap: "6px",
+        display: "flex",
+        padding: "10px",
+        flexDirection: 'column',
+        width: '100%'
+      }}>
         <textarea
           type="name"
           placeholder="Enter Bio"
           name="email"
           rows={12}
           cols={40}
-          className={styles.txtarea}
+          className="txtarea"
           value={desc}
           onChange={(e) => {
             setDesc(e.target.value);
           }}
         />
       </div>
-      <div style={{ padding: "10px" }}>
-        <button className="btn btn-primary" onClick={HandleCreateProfile}>
+      <div style={{ padding: "10px 10px 15px", width: '100%', display: 'flex', gap: '10px', justifyContent: 'end' }}>
+        <button style={{ padding: '20px 40px' }} onClick={(e) => {
+          e.preventDefault()
+          navigate(-1);
+        }}>
+          Go Back
+        </button>
+        <button style={{ padding: '20px 40px' }} onClick={HandleCreateProfile}>
           Save
         </button>
       </div>

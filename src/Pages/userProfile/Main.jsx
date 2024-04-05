@@ -34,6 +34,8 @@ function Main() {
     navigate("/");
   };
 
+  console.log(data);
+
   return (
     <div className="App">
       <div className="main">
@@ -51,10 +53,10 @@ function Main() {
         </Fab>
         <div>
           <Card
-            img={data.profilePicture}
-            name={data.name}
-            email={data.email}
-            body={data.about}
+            img={data[0]?.profilePicture}
+            name={data[0]?.name}
+            email={data[0]?.email}
+            body={data[0]?.about}
           />
         </div>
       </div>

@@ -54,6 +54,7 @@ const SingleRoom = () => {
             </button>
           </div>
         </div>
+        {console.log(clients,"mu")}
         <div className={styles.clientsList}>
           {clients.map((client) => {
             return (
