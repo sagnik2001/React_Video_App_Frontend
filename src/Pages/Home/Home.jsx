@@ -19,9 +19,9 @@ const Home = () => {
 
   return (
     <div className={styles.cardWrapper}>
-      <Card title="Welcome to Chit-Chat">
+      <Card title="Welcome to Chatter-Call">
         <p className={styles.text}>
-          This is a video and audio calling react app made by our team
+          This is an audio calling website.Connect with your loved ones easily.
         </p>
         <div>
           <Button onClick={handleNavigate} text="Let's Go" />

@@ -39,7 +39,7 @@ function Main() {
   return (
     <div className="App">
       <div className="main">
-        <Fab
+        {/* <Fab
           variant="extended"
           style={{
             position: "absolute",
@@ -50,7 +50,7 @@ function Main() {
           onClick={handleLogOut}
         >
           <BiLogOut /> &nbsp; LogOut
-        </Fab>
+        </Fab> */}
         <div>
           <Card
             img={data[0]?.profilePicture}

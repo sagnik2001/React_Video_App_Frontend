@@ -17,6 +17,21 @@
   padding: 3rem;
 }
 
+.profile-container{
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+@media screen and (max-width:600px) {
+  .profile-container{
+    display: block;
+    margin: 0;
+  }
+}
+
 .profile_titles {
   font-size: 3rem !important;
   /* color: white !important; */

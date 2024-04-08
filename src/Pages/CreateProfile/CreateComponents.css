@@ -1,4 +1,4 @@
-.container {
+.create-container {
     background-image: linear-gradient(90deg, rgba(119,107,93,1) 0%, rgba(176,166,149,1) 35%, rgba(243,238,234,1) 100%);
     color: black;
     max-width: 100%;
@@ -6,25 +6,27 @@
     padding: 20px; /* Add padding for spacing */
     border-radius: 10px; /* Add border radius for rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    text-align: center;
   }
   
   /* Example of text styles */
-  .container h1 {
+  .create-container h1 {
     font-size: 2rem;
     margin-bottom: 20px;
   }
   
-  .container p {
+  .create-container p {
     font-size: 1.2rem;
     line-height: 1.5;
   }
   
   /* Example of button styles */
-  .container button {
+  .create-container button {
     padding: 10px 20px;
     font-size: 1rem;
     background-color: #deaa3e;
     color: white;
+    text-align: center;
     border: none;
     border-radius: 5px;
     cursor: pointer;

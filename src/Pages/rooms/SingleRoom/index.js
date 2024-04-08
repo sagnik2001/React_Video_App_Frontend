@@ -6,7 +6,7 @@ import axios from "axios";
 import { base_url } from "../../../app/base_url";
 import { BsFillMicFill, BsFillMicMuteFill } from "react-icons/bs";
 import { MdOutlineArrowBack } from "react-icons/md";
-import {FaRegHandPeace} from "react-icons/fa"
+import { FaRegHandPeace } from "react-icons/fa"
 
 const SingleRoom = () => {
   const id = useParams();
@@ -37,7 +37,7 @@ const SingleRoom = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="create-container">
         <button onClick={handManualLeave} className={styles.goBack}>
           <MdOutlineArrowBack size={35} />
           <span>All voice rooms</span>
@@ -47,22 +47,23 @@ const SingleRoom = () => {
         <div className={styles.header}>
           {roomDetails && <h2 className={styles.topic}>{roomDetails.name}</h2>}
           <div className={styles.actions}>
-          
+
             <button onClick={handManualLeave} className={styles.actionBtn}>
               <FaRegHandPeace size={35} />
               <span>Leave quietly</span>
             </button>
           </div>
         </div>
-        {console.log(clients,"mu")}
+        {console.log(clients, "mu")}
         <div className={styles.clientsList}>
           {clients.map((client) => {
+            { console.log(client) }
             return (
               <div className={styles.client} key={client.id}>
                 <div className={styles.userHead}>
                   <img
                     className={styles.userAvatar}
-                    src={client.profilePicture}
+                    src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2022/01/discord-logo-icon.jpg"
                     alt=""
                   />
                   <audio

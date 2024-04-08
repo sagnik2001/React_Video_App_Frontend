@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image1 from "../../Components/Images/checkimage.jpeg";
-import "./CreateProfile.css";
+// import "./CreateProfile.css";
+import "./CreateComponents.css"
 import axios from "axios";
 import { base_url } from "../../app/base_url";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -65,17 +66,8 @@ const CreateComponents = () => {
   };
 
   return (
-    <div id="main1"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        textAlign: "center",
-        color: "gray",
-        maxWidth: '720px',
-        width: '100%',
-        padding: '10px'
-      }}>
+    <div
+     className="create-container">
       <div>
         <label htmlFor="upload-btn">
           {image?.preview ? (
@@ -169,13 +161,13 @@ const CreateComponents = () => {
         />
       </div>
       <div style={{ padding: "10px 10px 15px", width: '100%', display: 'flex', gap: '10px', justifyContent: 'end' }}>
-        <button style={{ padding: '20px 40px' }} onClick={(e) => {
+        <button className="btn btn-primary"  onClick={(e) => {
           e.preventDefault()
           navigate(-1);
         }}>
           Go Back
         </button>
-        <button style={{ padding: '20px 40px' }} onClick={HandleCreateProfile}>
+        <button className="btn btn-primary"  onClick={HandleCreateProfile}>
           Save
         </button>
       </div>

@@ -6,6 +6,9 @@ import CreateRoom from "./CreateRoom";
 import axios from "axios";
 import { base_url } from "../../app/base_url";
 import { useNavigate } from "react-router-dom";
+import "../CreateProfile/CreateComponents.css"
+import { MdOutlineArrowBack } from "react-icons/md";
+import styles from "../rooms/SingleRoom/SingleRoom.module.css"
 
 const Rooms = () => {
   const [open, setOpen] = useState(false);
@@ -71,14 +74,19 @@ const Rooms = () => {
 
   return (
     <div className="Room_Container">
+
+
+    
+
       <div style={{ padding: "25px" }}>
         <h1>CHAT ROOMS</h1>
       </div>
 
+
       {loading ? (
         <div className="loader">Loading...</div>
       ) : (
-        <div className="container">
+        <div className="container create-container">
           {rooms?.map((res, keys) => (
             <div
               className="card-container"
