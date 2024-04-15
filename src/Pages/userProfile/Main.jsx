@@ -39,18 +39,18 @@ function Main() {
   return (
     <div className="App">
       <div className="main">
-        {/* <Fab
+         <Fab
           variant="extended"
           style={{
             position: "absolute",
-            left: "70%",
+            left: "90%",
             top: "10%",
             textTransform: "capitalize",
           }}
           onClick={handleLogOut}
         >
           <BiLogOut /> &nbsp; LogOut
-        </Fab> */}
+        </Fab> 
         <div>
           <Card
             img={data[0]?.profilePicture}
