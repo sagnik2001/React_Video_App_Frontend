@@ -11,6 +11,7 @@ import { FaRegHandPeace } from "react-icons/fa"
 const SingleRoom = () => {
   const id = useParams();
   const [isMuted, setMuted] = useState(true);
+  const [isVideoDisplay, setIsVideoDisplay] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("userProfile"));
   const location = useLocation();
@@ -56,33 +57,50 @@ const SingleRoom = () => {
         </div>
         {console.log(clients, "mu")}
         <div className={styles.clientsList}>
-          {clients.map((client) => {
-            { console.log(client) }
-            return (
-              <div className={styles.client} key={client.id}>
-                <div className={styles.userHead}>
-                  <img
-                    className={styles.userAvatar}
-                    src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2022/01/discord-logo-icon.jpg"
-                    alt=""
-                  />
-                  <audio
-                    autoPlay
-                    ref={(instance) => {
-                      provideRef(instance, client.id);
-                    }}
-                  />
-                  <button
-                    onClick={() => handleMuteClick(client.id)}
-                    className={styles.micBtn}
-                  >
-                    {isMuted ? <BsFillMicMuteFill /> : <BsFillMicFill />}
-                  </button>
+          {clients.filter((item,
+            index) => clients.indexOf(item) === index).map((client) => {
+              { console.log(client) }
+              return (
+                <div className={styles.client} key={client.id}>
+                  <div className={styles.userHead}>
+                    {/* {
+                      client.video ? <video autoPlay
+                        ref={(instance) => {
+                          provideRef(instance, client.id);
+                        }} /> : (
+                        <>
+                          <img
+                            className={styles.userAvatar}
+                            src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2022/01/discord-logo-icon.jpg"
+                            alt=""
+                          />
+                          <audio
+                            autoPlay
+                            ref={(instance) => {
+                              provideRef(instance, client.id);
+                            }}
+                          />
+                        </>
+                      )
+                    } */}
+
+                    <video autoPlay
+                      ref={(instance) => {
+                        provideRef(instance, client.id);
+                      }} />
+
+                    {/*  */}
+                    <button
+                      onClick={() => handleMuteClick(client.id)}
+                      className={styles.micBtn}
+                    >
+                      {isMuted ? <BsFillMicMuteFill /> : <BsFillMicFill />}
+                    </button>
+                  </div>
+                  <h4 style={{ color: "white" }}>{client.name}</h4>
                 </div>
-                <h4 style={{ color: "white" }}>{client.name}</h4>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>

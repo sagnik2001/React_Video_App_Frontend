@@ -25,8 +25,9 @@ export const useWebRTC = (roomId, user) => {
 
   const addNewClient = useCallback(
     (newClient, cb) => {
+      console.log(newClient, "newClient");
       const lookingFor = clients.find((client) => client.id === newClient.id);
-
+      console.log(lookingFor, "lookingfor")
       if (lookingFor === undefined) {
         setClients((existingClients) => [...existingClients, newClient], cb);
       }
@@ -38,12 +39,14 @@ export const useWebRTC = (roomId, user) => {
     clientsRef.current = clients;
   }, [clients]);
 
+
   useEffect(() => {
     const initChat = async () => {
       socket.current = socketInit();
       await captureMedia();
-      addNewClient({ ...user, muted: true }, () => {
+      addNewClient({ ...user, muted: true,video : false }, () => {
         const localElement = audioElements.current[user.id];
+        console.log(localElement, 'localElement');
         if (localElement) {
           localElement.volume = 0;
           localElement.srcObject = localMediaStream.current;
@@ -70,9 +73,23 @@ export const useWebRTC = (roomId, user) => {
 
       async function captureMedia() {
         // Start capturing local audio stream.
-        localMediaStream.current = await navigator.mediaDevices.getUserMedia({
-          audio: true,
-        });
+        // localMediaStream.current = await navigator.mediaDevices.getUserMedia({
+        //   audio: true,
+        //   video: true,
+        // });
+        try {
+          localMediaStream.current = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: true
+          });
+          // Handle setting up the local video element, if necessary
+          const localElement = audioElements.current[user.id];
+          if (localElement) {
+            localElement.srcObject = localMediaStream.current;
+          }
+        } catch (error) {
+          console.error("Error capturing media:", error);
+        }
       }
       async function handleNewPeer({ peerId, createOffer, user: remoteUser }) {
         if (peerId in connections.current) {
@@ -94,8 +111,20 @@ export const useWebRTC = (roomId, user) => {
           });
         };
 
+        console.log(connections.current[peerId], "per");
+
+        const processedTracks = new Set();
+
         // Handle on track event on this connection
-        connections.current[peerId].ontrack = ({ streams: [remoteStream] }) => {
+        connections.current[peerId].ontrack = ({ streams: [remoteStream] ,track}) => {
+          console.log(track.id)
+          if (processedTracks.has(remoteStream.id)) {
+            console.log("Track already processed:", remoteStream.id);
+            return;
+          }
+          processedTracks.add(remoteStream.id);
+
+          console.log(remoteStream, "remoteStream");
           addNewClient({ ...remoteUser, muted: true }, () => {
             // get current users mute info
             const currentUser = clientsRef.current.find(
